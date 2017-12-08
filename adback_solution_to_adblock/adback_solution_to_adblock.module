@@ -6,11 +6,12 @@ use Drupal\Core\Render\Markup;
 function adback_solution_to_adblock_page_bottom(array &$page_bottom)
 {
     $adback = AdbackSolutionToAdblockGeneric::getInstance();
-    $scripts = $adback->getScriptInfo();
-
-    foreach ($scripts as $type => $script) {
-        $page_bottom['adback_solution_to_adblock_' . $type] = [
-            '#markup' => Markup::create('<script>' . $script . '</script>'),
-        ];
+    if ($adback->isConnected()) {
+        $scripts = $adback->getScriptInfo();
+        foreach ($scripts as $type => $script) {
+            $page_bottom['adback_solution_to_adblock_' . $type] = [
+                '#markup' => Markup::create('<script>' . $script . '</script>'),
+            ];
+        }
     }
 }

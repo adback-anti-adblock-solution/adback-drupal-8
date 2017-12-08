@@ -114,8 +114,12 @@ class AdbackSolutionToAdblockGeneric
      */
     public function isConnected($token = NULL)
     {
+        if (true === \Drupal::config('adback_solution_to_adblock.settings')->get('connected')) {
+            $this->connected = true;
+        }
+
         if ($this->connected !== null) {
-                return $this->connected;
+            return $this->connected;
         }
 
         if ($token == NULL) {
@@ -129,6 +133,9 @@ class AdbackSolutionToAdblockGeneric
         $this->api->setToken($token->access_token);
 
         $this->connected = $this->api->isConnected();
+        $config = \Drupal::configFactory()->getEditable('adback_solution_to_adblock.settings');
+        $config->set('connected', $this->connected);
+        $config->save();
 
         return $this->connected;
     }
@@ -179,6 +186,7 @@ class AdbackSolutionToAdblockGeneric
         $config = \Drupal::configFactory()->getEditable('adback_solution_to_adblock.settings');
         $config->clear('access_token');
         $config->clear('refresh_token');
+        $config->set('connected', false);
         $config->save();
 
         foreach ($this->types as $type) {
