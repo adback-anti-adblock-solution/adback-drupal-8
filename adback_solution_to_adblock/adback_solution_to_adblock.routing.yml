@@ -1,0 +1,7 @@
+adback_solution_to_adblock.statistics:
+    path: '/admin/config/services/adback_solution_to_adblock/statistics'
+    defaults:
+        _controller: '\Drupal\adback_solution_to_adblock\Controller\AdbackController::statistics'
+        _title: 'AdBack analytics'
+    requirements:
+        _permission: 'administer adback'

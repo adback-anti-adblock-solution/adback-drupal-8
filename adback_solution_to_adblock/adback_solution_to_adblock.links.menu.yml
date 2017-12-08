@@ -1,0 +1,4 @@
+adback_solution_to_adblock.statistics:
+    title: AdBack Statitics
+    route_name: adback_solution_to_adblock.statistics
+    parent: system.admin_config_development
