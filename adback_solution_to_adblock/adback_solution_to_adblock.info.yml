@@ -1,0 +1,6 @@
+name: AdBack Solution to Adblock Module
+description: Enable all AdBack feature in your drupal website.
+package: Custom
+type: module
+version: 1.0
+core: 8.x

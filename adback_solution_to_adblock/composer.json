@@ -1,0 +1,9 @@
+{
+    "name": "adback/adback_solution_to_adblock_drupal_8",
+    "description": "The dependancy file for the AdBack drupal 8 module",
+    "license": "MIT",
+    "type": "drupal-module",
+    "require": {
+        "adback/adback-sdk-php": "~2"
+    }
+}

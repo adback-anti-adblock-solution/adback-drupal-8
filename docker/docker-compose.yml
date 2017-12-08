@@ -1,0 +1,20 @@
+drupal_db:
+  image: mysql:5.7
+  volumes:
+   - ./db_data:/var/lib/mysql
+  environment:
+   MYSQL_ROOT_PASSWORD: drupal
+   MYSQL_DATABASE: drupal
+   MYSQL_USER: drupal
+   MYSQL_PASSWORD: drupal
+  ports:
+   - "3310:3306"
+
+drupal:
+  links:
+   - drupal_db
+  image: drupal:8
+  volumes:
+    - ../adback_solution_to_adblock:/var/www/html/modules/custom/adback_solution_to_adblock
+  ports:
+   - "8003:80"
