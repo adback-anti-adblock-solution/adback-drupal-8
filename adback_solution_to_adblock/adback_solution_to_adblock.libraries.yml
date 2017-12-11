@@ -1,0 +1,6 @@
+# Show how weights work.
+adback_solution_to_adblock.ab-admin:
+  js:
+    js/ab-admin.js: {  }
+  dependencies:
+    - core/jquery

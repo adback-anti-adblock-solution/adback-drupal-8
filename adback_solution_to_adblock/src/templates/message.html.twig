@@ -1,12 +1,19 @@
 <!-- This file should primarily consist of HTML with a little bit of PHP. -->
-<h1 class="ab-lefty">{{ 'AdBack : The stats of your AdBlock audience' |trans }}</h1>
+<h1 class="ab-lefty">{{ 'AdBack : Configure your messages' |trans }}</h1>
 <hr class="clear">
 
 <div id="ab-full-app">
-    <div id="adb-stats"
-         data-reviewlink="https://www.drupal.org/project/adback_solution_to_adbloc"
-         data-supportlink="https://www.drupal.org/project/adback_solution_to_adblock">
-    </div>
+    <grid>
+        <div col="5/6">
+            <div id="ab-full-form"></div>
+        </div>
+        <div col="1/6">
+            <div id="adb-sidebar-standalone"
+                 data-reviewlink="https://www.drupal.org/project/adback_solution_to_adbloc"
+                 data-supportlink="https://www.drupal.org/project/adback_solution_to_adblock">
+            </div>
+        </div>
+    </grid>
 </div>
 
 <script src="https://www.adback.co/built/js/ab.js?2"></script>

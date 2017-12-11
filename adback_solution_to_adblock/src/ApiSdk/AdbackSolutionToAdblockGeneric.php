@@ -72,7 +72,11 @@ class AdbackSolutionToAdblockGeneric
             $config->set('update_time', @time());
             $config->save();
             foreach ($this->types as $type) {
-                if (is_array($fullScripts['script_codes']) && array_key_exists($type, $fullScripts['script_codes']) && '' !== $fullScripts['script_codes']['code']) {
+                if (
+                    is_array($fullScripts['script_codes'])
+                    && array_key_exists($type, $fullScripts['script_codes'])
+                    && '' !== $fullScripts['script_codes'][$type]['code']
+                ) {
                     $config = \Drupal::configFactory()->getEditable('adback_solution_to_adblock.' . $type);
                     $config->set('script', $fullScripts['script_codes'][$type]['code']);
                     $config->save();
@@ -148,7 +152,6 @@ class AdbackSolutionToAdblockGeneric
      */
     public function getToken()
     {
-
         return (object) [
             'access_token' => \Drupal::config('adback_solution_to_adblock.settings')->get('access_token'),
             'refresh_token' => \Drupal::config('adback_solution_to_adblock.settings')->get('refresh_token'),
