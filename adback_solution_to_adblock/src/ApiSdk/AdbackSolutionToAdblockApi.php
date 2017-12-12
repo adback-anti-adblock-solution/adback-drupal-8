@@ -65,6 +65,27 @@ class AdbackSolutionToAdblockApi
     }
 
     /**
+     * Get all endpoints.
+     *
+     * @return mixed
+     *     Get all endpoints
+     */
+    public function getEndpoints()
+    {
+        $result = $this->connector->get("api/end-point/me", 'json');
+
+        return $result;
+    }
+
+    /**
+     * Ensure endpoint is configured
+     */
+    public function ensureEndpointProxyIsActivated()
+    {
+        $this->connector->post('api/end-point/activate', []);
+    }
+
+    /**
      * Hit plugin activate.
      */
     public function pluginActivate()

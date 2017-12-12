@@ -83,9 +83,26 @@ class AdbackSolutionToAdblockGeneric
                     $scriptData[$type] = $fullScripts['script_codes'][$type]['code'];
                 }
             }
+            $this->updateEndpoints();
         }
 
         return $scripts;
+    }
+
+    /**
+     * Update the endpoints data
+     */
+    protected function updateEndpoints()
+    {
+        $endpoints = $this->api->getEndpoints();
+
+        $config = \Drupal::configFactory()->getEditable('adback_solution_to_adblock.endpoints');
+        foreach ($endpoints as $type => $endpoint) {
+            $config->set($type, $endpoint);
+        }
+        $config->save();
+
+        \Drupal::service("router.builder")->rebuild();
     }
 
 

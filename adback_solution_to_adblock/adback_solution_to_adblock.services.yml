@@ -1,0 +1,5 @@
+services:
+  adback_solution_to_adblock.route_subscriber:
+    class: Drupal\adback_solution_to_adblock\Routing\RouteSubscriber
+    tags:
+      - { name: event_subscriber }

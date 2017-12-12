@@ -8,4 +8,5 @@ function adback_solution_to_adblock_install()
     $mail = \Drupal::config('system.site')->get('mail');
     $api = new AdbackSolutionToAdblockApi();
     $api->registerUser($mail, $base_url);
+    $api->ensureEndpointProxyIsActivated();
 }

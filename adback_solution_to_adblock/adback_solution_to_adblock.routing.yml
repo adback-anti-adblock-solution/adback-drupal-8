@@ -40,3 +40,25 @@ adback_solution_to_adblock.logout:
         _title: 'AdBack logout'
     requirements:
         _permission: 'administer adback'
+
+adback_solution_to_adblock.old_end_point:
+    path: '/example/{proxyfiedData}'
+    defaults:
+        _controller: '\Drupal\adback_solution_to_adblock\Controller\ProxyController::proxy'
+        _title: 'AdBack proxy'
+    requirements:
+        _permission: 'access content'
+adback_solution_to_adblock.end_point:
+    path: '/example/{proxyfiedData}'
+    defaults:
+        _controller: '\Drupal\adback_solution_to_adblock\Controller\ProxyController::proxy'
+        _title: 'AdBack proxy'
+    requirements:
+        _permission: 'access content'
+adback_solution_to_adblock.next_end_point:
+    path: '/example/{proxyfiedData}'
+    defaults:
+        _controller: '\Drupal\adback_solution_to_adblock\Controller\ProxyController::proxy'
+        _title: 'AdBack proxy'
+    requirements:
+        _permission: 'access content'
