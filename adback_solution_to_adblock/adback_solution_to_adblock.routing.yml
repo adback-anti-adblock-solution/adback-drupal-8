@@ -12,6 +12,13 @@ adback_solution_to_adblock.message:
         _title: 'AdBack message'
     requirements:
         _permission: 'administer adback'
+adback_solution_to_adblock.placement:
+    path: '/admin/config/services/adback_solution_to_adblock/placement'
+    defaults:
+        _controller: '\Drupal\adback_solution_to_adblock\Controller\AdbackController::placement'
+        _title: 'AdBack placement'
+    requirements:
+        _permission: 'administer adback'
 adback_solution_to_adblock.settings:
     path: '/admin/config/services/adback_solution_to_adblock/settings'
     defaults:

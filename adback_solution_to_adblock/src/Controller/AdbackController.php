@@ -71,6 +71,31 @@ class AdbackController implements ContainerInjectionInterface
     /**
      * @return array
      */
+    public function placement()
+    {
+        $adback = AdbackSolutionToAdblockGeneric::getInstance();
+        if (!$adback->isConnected()) {
+            return $this->displayLoginPage();
+        }
+
+        $path = __DIR__ . '/../templates/placement.html.twig';
+        $template = file_get_contents($path);
+        $token = $adback->getToken()->access_token;
+
+        return [
+            'message' => [
+                '#type' => 'inline_template',
+                '#template' => $template,
+                '#context' => [
+                    'access_token' => $token,
+                ],
+            ],
+        ];
+    }
+
+    /**
+     * @return array
+     */
     public function settings()
     {
         $adback = AdbackSolutionToAdblockGeneric::getInstance();
