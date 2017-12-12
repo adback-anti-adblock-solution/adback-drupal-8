@@ -1,16 +1,5 @@
 adback_solution_to_adblock.statistics:
-    title: AdBack Statitics
+    title: AdBack
     route_name: adback_solution_to_adblock.statistics
     parent: system.admin_config_development
-adback_solution_to_adblock.message:
-    title: AdBack Message
-    route_name: adback_solution_to_adblock.message
-    parent: system.admin_config_development
-adback_solution_to_adblock.placement:
-    title: AdBack placement
-    route_name: adback_solution_to_adblock.placement
-    parent: system.admin_config_development
-adback_solution_to_adblock.settings:
-    title: AdBack settings
-    route_name: adback_solution_to_adblock.settings
-    parent: system.admin_config_development
+    description: 'AdBack plugin configuration'
