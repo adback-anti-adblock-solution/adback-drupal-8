@@ -12,10 +12,24 @@ adback_solution_to_adblock.message:
         _title: 'AdBack message'
     requirements:
         _permission: 'administer adback'
+adback_solution_to_adblock.settings:
+    path: '/admin/config/services/adback_solution_to_adblock/settings'
+    defaults:
+        _controller: '\Drupal\adback_solution_to_adblock\Controller\AdbackController::settings'
+        _title: 'AdBack settings'
+    requirements:
+        _permission: 'administer adback'
 adback_solution_to_adblock.token_save:
     path: '/admin/config/services/adback_solution_to_adblock/token_save'
     defaults:
         _controller: '\Drupal\adback_solution_to_adblock\Controller\AdbackController::tokenSave'
         _title: 'AdBack token save'
+    requirements:
+        _permission: 'administer adback'
+adback_solution_to_adblock.logout:
+    path: '/admin/config/services/adback_solution_to_adblock/logout'
+    defaults:
+        _controller: '\Drupal\adback_solution_to_adblock\Controller\AdbackController::logout'
+        _title: 'AdBack logout'
     requirements:
         _permission: 'administer adback'

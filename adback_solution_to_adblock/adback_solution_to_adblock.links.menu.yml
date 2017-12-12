@@ -6,3 +6,7 @@ adback_solution_to_adblock.message:
     title: AdBack Message
     route_name: adback_solution_to_adblock.message
     parent: system.admin_config_development
+adback_solution_to_adblock.settings:
+    title: AdBack settings
+    route_name: adback_solution_to_adblock.settings
+    parent: system.admin_config_development

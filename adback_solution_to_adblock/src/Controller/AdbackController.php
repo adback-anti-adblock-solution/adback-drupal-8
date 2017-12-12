@@ -69,6 +69,40 @@ class AdbackController implements ContainerInjectionInterface
     }
 
     /**
+     * @return array
+     */
+    public function settings()
+    {
+        $adback = AdbackSolutionToAdblockGeneric::getInstance();
+        if (!$adback->isConnected()) {
+            return $this->displayLoginPage();
+        }
+
+        $mail = \Drupal::config('system.site')->get('mail');
+        $path = __DIR__ . '/../templates/settings.html.twig';
+        $template = file_get_contents($path);
+        $token = $adback->getToken()->access_token;
+        $language = \Drupal::languageManager()->getCurrentLanguage()->getId();
+
+        return [
+            'settings' => [
+                '#type' => 'inline_template',
+                '#template' => $template,
+                '#context' => [
+                    'access_token' => $token,
+                    'email' => $mail,
+                    'locale' => $language,
+                ],
+                '#attached' => array(
+                    'library' => array(
+                        'adback_solution_to_adblock/adback_solution_to_adblock.ab-admin',
+                    ),
+                ),
+            ],
+        ];
+    }
+
+    /**
      * @return RedirectResponse
      */
     public function tokenSave()
@@ -82,6 +116,17 @@ class AdbackController implements ContainerInjectionInterface
                 'refresh_token' => '',
             ]);
         }
+
+        return new RedirectResponse(Url::fromRoute('adback_solution_to_adblock.statistics')->toString());
+    }
+
+    /**
+     * @return RedirectResponse
+     */
+    public function logout()
+    {
+        $adback = AdbackSolutionToAdblockGeneric::getInstance();
+        $adback->logout();
 
         return new RedirectResponse(Url::fromRoute('adback_solution_to_adblock.statistics')->toString());
     }

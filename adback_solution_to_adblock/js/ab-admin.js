@@ -44,82 +44,10 @@
             + '&website=' + $(event.target).data('site-url');
     }
 
-    function saveSlug() {
-        if ($("#ab-select-slug-field").val() == "") return;
 
-        var data = {
-            'action': 'saveSlug',
-            'slug': $("#ab-select-slug-field").val()
-        };
-
-        $.post(ajaxurl, data, function (response) {
-            var obj = JSON.parse(response);
-            if (obj.done === true) {
-                window.location.reload();
-            } else {
-                vex.dialog.alert(trans_arr.oops + ' ' + trans_arr.error);
-            }
-        });
-    }
-
-    function saveMessage() {
-        if ($("#ab-settings-header-text").val() == "" || $("#ab-settings-close-text").val() == "" || $("#ab-settings-message").val() == "") {
-            vex.dialog.alert(trans_arr.oops + ' ' + trans_arr.all_the_fields_should_be_fill);
-            return;
-        }
-
-        $("#ab-settings-submit").prop('disabled', true);
-        var data = {
-            'action': 'saveMessage',
-            'header-text': $("#ab-settings-header-text").val(),
-            'close-text': $("#ab-settings-close-text").val(),
-            'message': $("#ab-settings-message").val(),
-            'display': $("#ab-settings-display").is(":checked"),
-            'hide-admin': $("#ab-settings-hide-admin").is(":checked")
-        };
-
-        $.post(ajaxurl, data, function (response) {
-            var obj = JSON.parse(response);
-            $("#ab-settings-submit").prop('disabled', false);
-            if (obj.done === true) {
-                window.location.reload();
-            } else {
-                vex.dialog.alert(trans_arr.oops + ' ' + trans_arr.error);
-            }
-        });
-    }
-
-    function saveGoMessage() {
-        $("#ab-go-settings-submit").prop('disabled', true);
-        var data = {
-            'action': 'saveGoMessage',
-            'display': $("#ab-go-settings-display").is(":checked"),
-        };
-
-        $.post(ajaxurl, data, function (response) {
-            var obj = JSON.parse(response);
-            $("#ab-go-settings-submit").prop('disabled', false);
-            if (obj.done === true) {
-                window.location.reload();
-            } else {
-                vex.dialog.alert(trans_arr.oops + ' ' + trans_arr.error);
-            }
-        });
-    }
-
-    function _logout() {
-        var data = {
-            'action': 'ab_logout'
-        };
-
-        $.post(ajaxurl, data, function (response) {
-            var obj = JSON.parse(response);
-            if (obj.done === true) {
-                window.location.reload();
-            } else {
-                vex.dialog.alert(trans_arr.oops + ' ' + trans_arr.error);
-            }
-        });
+    function _logout(event) {
+        var destination = event.currentTarget.getAttribute('href');
+        window.location.href = destination;
     }
 
     $(document).ready(function () {
@@ -144,17 +72,13 @@
             });
         }
 
-        if ($("#ab-select-slug").length > 0) {
-            $("#ab-select-slug-save").on('click', saveSlug);
-        }
-
-        if ($("#ab-settings").length > 0) {
-            $("#ab-settings-submit").on('click', saveMessage);
-        }
-
-        if ($("#ab-go-settings").length > 0) {
-            $("#ab-go-settings-submit").on('click', saveGoMessage);
-        }
+        if ($("#ab-website").length > 0) {
+            $("#ab-website").on('click', function (event) {
+                var locale = $(event.target).data('locale');
+                var email = $(event.target).data('email');
+                window.location.href = 'https://www.adback.co/'+locale+'/login?_login_email='+email;
+            });
+        };
 
         $(".adback-incentive").on('click', function () {
             $.ajax({
