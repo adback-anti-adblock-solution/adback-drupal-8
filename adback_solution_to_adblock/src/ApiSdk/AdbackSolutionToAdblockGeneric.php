@@ -80,7 +80,7 @@ class AdbackSolutionToAdblockGeneric
                     $config = \Drupal::configFactory()->getEditable('adback_solution_to_adblock.' . $type);
                     $config->set('script', $fullScripts['script_codes'][$type]['code']);
                     $config->save();
-                    $scriptData[$type] = $fullScripts['script_codes'][$type]['code'];
+                    $scripts[$type] = $fullScripts['script_codes'][$type]['code'];
                 }
             }
             $this->updateEndpoints();
@@ -196,6 +196,7 @@ class AdbackSolutionToAdblockGeneric
         $this->api->setToken($token["access_token"]);
 
         $this->api->pluginActivate();
+        $this->api->ensureEndpointProxyIsActivated();
     }
 
     /**
