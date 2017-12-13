@@ -31,12 +31,14 @@ class AdbackController implements ContainerInjectionInterface
         $path = __DIR__ . '/../templates/statistics.html.twig';
         $template = file_get_contents($path);
         $token = $adback->getToken()->access_token;
+        $language = \Drupal::languageManager()->getCurrentLanguage()->getId();
 
         return [
             'statistics' => [
                 '#type' => 'inline_template',
                 '#template' => $template,
                 '#context' => [
+                    'locale' => $language,
                     'access_token' => $token,
                 ],
             ],
@@ -56,12 +58,14 @@ class AdbackController implements ContainerInjectionInterface
         $path = __DIR__ . '/../templates/message.html.twig';
         $template = file_get_contents($path);
         $token = $adback->getToken()->access_token;
+        $language = \Drupal::languageManager()->getCurrentLanguage()->getId();
 
         return [
             'message' => [
                 '#type' => 'inline_template',
                 '#template' => $template,
                 '#context' => [
+                    'locale' => $language,
                     'access_token' => $token,
                 ],
             ],
@@ -81,12 +85,14 @@ class AdbackController implements ContainerInjectionInterface
         $path = __DIR__ . '/../templates/placement.html.twig';
         $template = file_get_contents($path);
         $token = $adback->getToken()->access_token;
+        $language = \Drupal::languageManager()->getCurrentLanguage()->getId();
 
         return [
             'message' => [
                 '#type' => 'inline_template',
                 '#template' => $template,
                 '#context' => [
+                    'locale' => $language,
                     'access_token' => $token,
                 ],
             ],
