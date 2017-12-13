@@ -48,6 +48,7 @@ adback_solution_to_adblock.old_end_point:
         _title: 'AdBack proxy'
     requirements:
         _permission: 'access content'
+        proxifiedData: ".+"
 adback_solution_to_adblock.end_point:
     path: '/example/{proxyfiedData}'
     defaults:
@@ -55,6 +56,7 @@ adback_solution_to_adblock.end_point:
         _title: 'AdBack proxy'
     requirements:
         _permission: 'access content'
+        proxifiedData: ".+"
 adback_solution_to_adblock.next_end_point:
     path: '/example/{proxyfiedData}'
     defaults:
@@ -62,3 +64,4 @@ adback_solution_to_adblock.next_end_point:
         _title: 'AdBack proxy'
     requirements:
         _permission: 'access content'
+        proxifiedData: ".+"

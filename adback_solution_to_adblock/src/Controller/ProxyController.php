@@ -15,8 +15,7 @@ class ProxyController implements ContainerInjectionInterface
         return new static();
     }
 
-
-    public function proxy($query = '')
+    public function proxy($proxyfiedData = '')
     {
         if (!function_exists('getallheaders')) {
             function getallheaders() {
@@ -42,10 +41,8 @@ class ProxyController implements ContainerInjectionInterface
 
         $currentUrl = (!empty($_SERVER['HTTPS']) && $_SERVER['HTTPS'] !== 'off' ? 'https' : 'http' ). "://{$_SERVER['HTTP_HOST']}{$_SERVER['REQUEST_URI']}";
 
-        $params = '';
-        if (preg_match(sprintf('#/%s(?<params>/.+)#', preg_quote(basename($_SERVER["SCRIPT_FILENAME"]), '#')), $currentUrl, $matches)) {
-            $params = $matches['params'];
-        }
+        $params = str_replace(':', '/', $proxyfiedData);
+        $params = str_replace(' ', '+', $params);
 
         $_SERVER['HTTP_REFERER'] = isset($_SERVER['HTTP_REFERER']) ? $_SERVER['HTTP_REFERER'] : $currentUrl;
 
@@ -62,10 +59,6 @@ class ProxyController implements ContainerInjectionInterface
         $destinationURL = 'http://kapowsingardnerville.heatonnikolski.com/drupal.js';
         if ("POST" == $method) {
             $destinationURL = 'http://hosted.adback.co/drupal.js';
-        }
-
-        if ('' != $query) {
-            $destinationURL = $destinationURL . '/' . $query;
         }
 
         $response = $this->proxy_request($destinationURL, $data, $method, $params, $ip);
@@ -95,6 +88,7 @@ class ProxyController implements ContainerInjectionInterface
         }
 
         echo $contents;
+        die;
     }
 
     public function proxy_request($url, $data, $method, $params, $ip)
@@ -128,7 +122,7 @@ class ProxyController implements ContainerInjectionInterface
 
         // extract host and path:
         $host = $url['host'];
-        $path = $url['path'].$params;
+        $path = $url['path'] . '/' . $params;
         $port = isset($url['port']) ? $url['port'] : ($url['scheme'] == 'https' ? '443' : '80');
 
         $fp = fsockopen($host, $port, $errno, $errstr, 30);
