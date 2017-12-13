@@ -15,3 +15,14 @@ function adback_solution_to_adblock_page_bottom(array &$page_bottom)
         }
     }
 }
+
+function adback_solution_to_adblock_cron()
+{
+    $updateTime = \Drupal::config('adback_solution_to_adblock.settings')->get('update_time');
+    if ((time() - 7200) < $updateTime) {
+        $adback = AdbackSolutionToAdblockGeneric::getInstance();
+        if ($adback->isConnected()) {
+            $adback->getScriptInfo(true);
+        }
+    }
+}
