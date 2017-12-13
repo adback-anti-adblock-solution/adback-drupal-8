@@ -9,7 +9,7 @@ namespace Drupal\adback_solution_to_adblock\ApiSdk;
  */
 class AdbackSolutionToAdblockConnector
 {
-    const ADBACK_BASE = 'http://172.17.0.1/app_dev.php/';
+    const ADBACK_BASE = 'https://www.adback.co/';
 
     protected $token;
 
