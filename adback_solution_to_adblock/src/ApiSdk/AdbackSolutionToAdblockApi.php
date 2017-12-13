@@ -198,7 +198,7 @@ class AdbackSolutionToAdblockApi
         }
 
         if ('' == \Drupal::config('adback_solution_to_adblock.settings')->get('_access_token')) {
-//            drupal_set_message(t('An error occurred during your AdBack plugin activation. Please go to the <a href="/admin/config/adback/settings">configuration</a> page to complete your installation'), 'error');
+            drupal_set_message(t('An error occurred during your AdBack plugin activation. Please go to the <a href="/admin/config/services/adback_solution_to_adblock/settings">configuration</a> page to complete your installation'), 'error');
         }
     }
 }
