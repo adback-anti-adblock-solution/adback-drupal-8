@@ -146,6 +146,7 @@ class AdbackController implements ContainerInjectionInterface
                 'access_token' => $accessToken,
                 'refresh_token' => '',
             ]);
+            drupal_set_message(t('The AdBack token has been successfully saved.'), 'status');
         }
 
         return new RedirectResponse(Url::fromRoute('adback_solution_to_adblock.statistics')->toString());
