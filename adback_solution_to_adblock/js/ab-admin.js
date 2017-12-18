@@ -32,7 +32,7 @@
     function loginAdback(e) {
         $('#ab-login-adback').prop('disabled', true);
         var callback = encodeURI(e.currentTarget.dataset.callbackUrl);
-        window.location.href = 'http://adback.dev/app_dev.php/tokenoauth/site?redirect_url=' + callback;
+        window.location.href = 'https://www.adback.co/tokenoauth/site?redirect_url=' + callback;
     }
 
     function registerAdback(event) {
