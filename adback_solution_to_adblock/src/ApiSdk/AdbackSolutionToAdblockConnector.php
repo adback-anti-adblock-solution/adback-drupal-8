@@ -92,7 +92,7 @@ class AdbackSolutionToAdblockConnector
      * @return mixed
      *     The response of request
      */
-    public function post($endpoint, array $fields, array $header = array())
+    public function post($endpoint, array $fields, array $header = [])
     {
         $url = self::ADBACK_BASE . $endpoint;
         $header[] = 'Content-Type: application/json';
@@ -123,13 +123,13 @@ class AdbackSolutionToAdblockConnector
             curl_close($ch);
         }
         else {
-            $options = array(
-                'http' => array(
+            $options = [
+                'http' => [
                     'header' => implode("\r\n", $header),
                     'method' => 'POST',
                     'content' => is_array($fields) ? json_encode($fields) : $fields,
-                ),
-            );
+                ],
+            ];
             $context = stream_context_create($options);
             $result = file_get_contents($url, FALSE, $context);
         }
@@ -150,7 +150,7 @@ class AdbackSolutionToAdblockConnector
      * @return mixed
      *     The response of request
      */
-    public function postWithToken($endpoint, array $fields, array $header = array())
+    public function postWithToken($endpoint, array $fields, array $header = [])
     {
         if ($this->token === NULL) {
             return FALSE;

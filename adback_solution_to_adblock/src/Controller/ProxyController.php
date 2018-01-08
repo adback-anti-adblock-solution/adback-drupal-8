@@ -19,7 +19,7 @@ class ProxyController implements ContainerInjectionInterface
     {
         if (!function_exists('getallheaders')) {
             function getallheaders() {
-                $headers = array();
+                $headers = [];
                 foreach($_SERVER as $key => $value) {
                     if (substr($key, 0, 5) == 'HTTP_') {
                         $headers[str_replace(' ', '-', ucwords(str_replace('_', ' ', strtolower(substr($key, 5)))))] = $value;
@@ -172,10 +172,10 @@ class ProxyController implements ContainerInjectionInterface
             }
         }
         else {
-            return array(
+            return [
                 'status' => 'err',
                 'error' => "$errstr ($errno)"
-            );
+            ];
         }
 
         // close the socket connection:
@@ -187,11 +187,11 @@ class ProxyController implements ContainerInjectionInterface
         $content = isset($result[1]) ? $result[1] : '';
 
         // return as structured array:
-        return array(
+        return [
             'status' => 'ok',
             'header' => $header,
             'content' => $content
-        );
+        ];
     }
 
     public function decode_chunked($str) {
