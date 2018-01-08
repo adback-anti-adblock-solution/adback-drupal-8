@@ -117,9 +117,9 @@ class AdbackSolutionToAdblockGeneric
      */
     public function updateMessageDisplay($display)
     {
-        $fields = array(
+        $fields = [
             "display" => $display
-        );
+        ];
 
         return $this->api->setMessageDisplay($fields);
     }

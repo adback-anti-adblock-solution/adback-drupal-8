@@ -181,11 +181,11 @@ class AdbackController implements ContainerInjectionInterface
                     'email' => $mail,
                     'base_url' => $base_url,
                 ],
-                '#attached' => array(
-                    'library' => array(
+                '#attached' => [
+                    'library' => [
                         'adback_solution_to_adblock/adback_solution_to_adblock.ab-admin',
-                    ),
-                ),
+                    ],
+                ],
             ]
         ];
     }
